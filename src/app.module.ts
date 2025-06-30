@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {ConfigModule, ConfigService} from '@nestjs/config'
 import { UsersModule } from './users/users.module';
 import { LoggerModule } from 'nestjs-pino';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { LoggerModule } from 'nestjs-pino';
       },
       inject: [ConfigService]
     }),
-    UsersModule],
+    UsersModule,
+    AuthModule],
   controllers: [],
   providers: [],
 })

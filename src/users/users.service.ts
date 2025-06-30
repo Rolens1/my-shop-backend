@@ -1,5 +1,5 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import {Model} from 'mongoose'
+import { Model, FilterQuery } from 'mongoose'
 import { User } from './user.schema';
 import { CreateUserRequest } from './dto/create-user.request';
 import { InjectModel } from '@nestjs/mongoose';
@@ -28,5 +28,9 @@ export class UsersService {
             throw(error)
         }
         
+    }
+
+    async getUser(filter: FilterQuery<User>): Promise<User | null> {
+        return await this.userModel.findOne(filter).exec();
     }
 }
