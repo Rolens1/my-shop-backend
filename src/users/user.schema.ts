@@ -11,3 +11,9 @@ export class User extends Document {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
+
+UserSchema.virtual('products', {
+  ref: 'Product',
+  localField: '_id',
+  foreignField: 'userId',
+});

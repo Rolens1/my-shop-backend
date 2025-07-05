@@ -18,8 +18,8 @@ export class AuthService {
     async login(user: User, response: Response) {
         const expires = new Date()
 
-        const jwtExpiration = this.configService.get<StringValue>("JWT_EXPIRATION", "10h")
-        const expiresInMs = ms(jwtExpiration)
+        const jwtExpiration = this.configService.getOrThrow<string>("JWT_EXPIRATION") as unknown
+        const expiresInMs = ms(jwtExpiration as ms.StringValue)
         if (typeof expiresInMs !== 'number') {
             throw new Error('Invalid JWT_EXPIRATION format')
         }
